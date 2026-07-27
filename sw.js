@@ -1,5 +1,5 @@
 // CADA VEZ QUE HAGAS UN CAMBIO EN TU APP, CAMBIA ESTE NÚMERO (ej. v3, v4, v5...)
-const CACHE_NAME = 'live-english-v2';
+const CACHE_NAME = 'live-english-v3';
 const urlsToCache = [
   '/',
   '/index.html',
