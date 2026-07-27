@@ -3,137 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Program Playlists</title>
+    <title>Northway Pop Songs</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        spotify: {
-                            base: '#121212',
-                            card: '#181818',
-                            hover: '#282828',
-                            green: '#1ed760',
-                            light: '#b3b3b3'
-                        }
-                    },
-                    boxShadow: {
-                        'spotify-drop': '0 8px 24px rgba(0,0,0,0.5)'
-                    }
-                }
-            }
-        }
-    </script>
     <style>
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #121212; }
-        ::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #888; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f3f4f6; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     </style>
 </head>
-<body class="bg-black text-white h-screen flex font-sans overflow-hidden">
+<body class="bg-gray-50 text-gray-900 h-screen flex font-sans overflow-hidden">
     
-    <!-- Barra Lateral (Desktop) - Oculta en móviles -->
-    <nav class="hidden md:flex w-64 bg-spotify-base rounded-lg flex-col p-4 m-2 mr-0">
-        <div class="flex items-center gap-4 mb-8 text-white hover:text-spotify-light transition-colors cursor-pointer">
-            <svg class="w-7 h-7 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12.5 3.247a1 1 0 0 0-1 0L4 7.577V20h4.5v-6a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v6H20V7.577l-7.5-4.33z"/></svg>
-            <span class="font-bold text-lg">Home</span>
-        </div>
-        <div class="flex items-center gap-4 text-spotify-light hover:text-white transition-colors cursor-pointer">
-            <svg class="w-7 h-7 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-            <span class="font-bold text-lg">Search</span>
-        </div>
-    </nav>
-
     <!-- Área Principal de Contenido -->
-    <main class="flex-1 bg-spotify-base md:rounded-lg overflow-y-auto bg-gradient-to-b from-[#2a2a2a] to-spotify-base relative w-full m-0 md:m-2">
+    <main class="flex-1 overflow-y-auto relative w-full">
         
         <!-- ========================================== -->
-        <!-- VISTA 1: LIBRERÍA (GRID DE LIBROS)         -->
+        <!-- VISTA 1: LIBRERÍA (GRID BLANCO)            -->
         <!-- ========================================== -->
-        <div id="library-view" class="p-4 md:p-8 transition-opacity duration-300">
-            <h1 class="text-2xl md:text-3xl font-bold mb-6 text-white tracking-tight">Pop Songs Program</h1>
+        <div id="library-view" class="p-4 md:p-8 md:max-w-6xl mx-auto transition-opacity duration-300">
+            <header class="mb-8 md:mb-12 pt-4">
+                <h1 class="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">Northway Program</h1>
+                <p class="text-gray-500 mt-2 font-medium">Select a book to play its pop songs</p>
+            </header>
             
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+                
                 <!-- Tarjeta: BASIC -->
                 <div onclick="playBook('https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/mmontero-608517442/sets/basic-beats', 'Basic Level')" 
-                     class="group bg-spotify-card hover:bg-spotify-hover p-3 md:p-4 rounded-md transition duration-300 cursor-pointer relative">
-                    <div class="relative mb-3 md:mb-4 overflow-hidden rounded shadow-spotify-drop aspect-[3/4]">
-                        <img src="https://placehold.co/300x400/1ed760/000000?text=Basic" alt="Basic Book Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute bottom-2 right-2 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out">
-                            <button class="w-10 h-10 md:w-12 md:h-12 bg-spotify-green rounded-full flex items-center justify-center text-black shadow-xl">
-                                <svg class="w-5 h-5 md:w-6 md:h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            </button>
-                        </div>
+                     class="group bg-white hover:shadow-xl hover:-translate-y-1 p-3 md:p-4 rounded-2xl shadow-sm border border-gray-100 transition-all duration-300 cursor-pointer relative">
+                    <div class="relative mb-3 md:mb-4 overflow-hidden rounded-xl aspect-[3/4] bg-gray-100">
+                        <img src="https://placehold.co/300x400/2563eb/ffffff?text=Basic" alt="Basic Book Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     </div>
-                    <h2 class="font-bold text-white mb-1 truncate text-sm md:text-base">Basic Level</h2>
-                    <p class="text-xs md:text-sm text-spotify-light truncate">Pop Songs Program</p>
+                    <h2 class="font-bold text-gray-900 mb-1 truncate text-sm md:text-lg">Basic Level</h2>
+                    <p class="text-xs md:text-sm text-gray-500 truncate font-medium">Pop Songs</p>
                 </div>
 
                 <!-- Tarjeta: INTERMEDIATE -->
                 <div onclick="playBook('URL_EMBED_INTERMEDIATE', 'Intermediate Level')" 
-                     class="group bg-spotify-card hover:bg-spotify-hover p-3 md:p-4 rounded-md transition duration-300 cursor-pointer relative">
-                    <div class="relative mb-3 md:mb-4 overflow-hidden rounded shadow-spotify-drop aspect-[3/4]">
-                        <img src="https://placehold.co/300x400/3b82f6/ffffff?text=Intermediate" alt="Intermediate Book Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute bottom-2 right-2 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out">
-                            <button class="w-10 h-10 md:w-12 md:h-12 bg-spotify-green rounded-full flex items-center justify-center text-black shadow-xl">
-                                <svg class="w-5 h-5 md:w-6 md:h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            </button>
-                        </div>
+                     class="group bg-white hover:shadow-xl hover:-translate-y-1 p-3 md:p-4 rounded-2xl shadow-sm border border-gray-100 transition-all duration-300 cursor-pointer relative">
+                    <div class="relative mb-3 md:mb-4 overflow-hidden rounded-xl aspect-[3/4] bg-gray-100">
+                        <img src="https://placehold.co/300x400/10b981/ffffff?text=Intermediate" alt="Intermediate Book Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     </div>
-                    <h2 class="font-bold text-white mb-1 truncate text-sm md:text-base">Intermediate Level</h2>
-                    <p class="text-xs md:text-sm text-spotify-light truncate">Pop Songs Program</p>
+                    <h2 class="font-bold text-gray-900 mb-1 truncate text-sm md:text-lg">Intermediate Level</h2>
+                    <p class="text-xs md:text-sm text-gray-500 truncate font-medium">Pop Songs</p>
                 </div>
 
                 <!-- Tarjeta: ADVANCED -->
                 <div onclick="playBook('URL_EMBED_ADVANCED', 'Advanced Level')" 
-                     class="group bg-spotify-card hover:bg-spotify-hover p-3 md:p-4 rounded-md transition duration-300 cursor-pointer relative">
-                    <div class="relative mb-3 md:mb-4 overflow-hidden rounded shadow-spotify-drop aspect-[3/4]">
-                        <img src="https://placehold.co/300x400/ef4444/ffffff?text=Advanced" alt="Advanced Book Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute bottom-2 right-2 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out">
-                            <button class="w-10 h-10 md:w-12 md:h-12 bg-spotify-green rounded-full flex items-center justify-center text-black shadow-xl">
-                                <svg class="w-5 h-5 md:w-6 md:h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            </button>
-                        </div>
+                     class="group bg-white hover:shadow-xl hover:-translate-y-1 p-3 md:p-4 rounded-2xl shadow-sm border border-gray-100 transition-all duration-300 cursor-pointer relative">
+                    <div class="relative mb-3 md:mb-4 overflow-hidden rounded-xl aspect-[3/4] bg-gray-100">
+                        <img src="https://placehold.co/300x400/f59e0b/ffffff?text=Advanced" alt="Advanced Book Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     </div>
-                    <h2 class="font-bold text-white mb-1 truncate text-sm md:text-base">Advanced Level</h2>
-                    <p class="text-xs md:text-sm text-spotify-light truncate">Pop Songs Program</p>
+                    <h2 class="font-bold text-gray-900 mb-1 truncate text-sm md:text-lg">Advanced Level</h2>
+                    <p class="text-xs md:text-sm text-gray-500 truncate font-medium">Pop Songs</p>
                 </div>
 
                 <!-- Tarjeta: EXPERT -->
                 <div onclick="playBook('URL_EMBED_EXPERT', 'Expert Level')" 
-                     class="group bg-spotify-card hover:bg-spotify-hover p-3 md:p-4 rounded-md transition duration-300 cursor-pointer relative">
-                    <div class="relative mb-3 md:mb-4 overflow-hidden rounded shadow-spotify-drop aspect-[3/4]">
-                        <img src="https://placehold.co/300x400/8b5cf6/ffffff?text=Expert" alt="Expert Book Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute bottom-2 right-2 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out">
-                            <button class="w-10 h-10 md:w-12 md:h-12 bg-spotify-green rounded-full flex items-center justify-center text-black shadow-xl">
-                                <svg class="w-5 h-5 md:w-6 md:h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            </button>
-                        </div>
+                     class="group bg-white hover:shadow-xl hover:-translate-y-1 p-3 md:p-4 rounded-2xl shadow-sm border border-gray-100 transition-all duration-300 cursor-pointer relative">
+                    <div class="relative mb-3 md:mb-4 overflow-hidden rounded-xl aspect-[3/4] bg-gray-100">
+                        <img src="https://placehold.co/300x400/ef4444/ffffff?text=Expert" alt="Expert Book Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     </div>
-                    <h2 class="font-bold text-white mb-1 truncate text-sm md:text-base">Expert Level</h2>
-                    <p class="text-xs md:text-sm text-spotify-light truncate">Pop Songs Program</p>
+                    <h2 class="font-bold text-gray-900 mb-1 truncate text-sm md:text-lg">Expert Level</h2>
+                    <p class="text-xs md:text-sm text-gray-500 truncate font-medium">Pop Songs</p>
                 </div>
             </div>
         </div>
 
         <!-- ========================================== -->
-        <!-- VISTA 2: REPRODUCTOR (PANTALLA COMPLETA)   -->
+        <!-- VISTA 2: REPRODUCTOR (BLANCO Y LIMPIO)     -->
         <!-- ========================================== -->
-        <div id="player-view" class="hidden p-0 md:p-8 flex flex-col h-full bg-spotify-base">
+        <div id="player-view" class="hidden flex-col h-full bg-white md:bg-gray-50 md:p-8 absolute inset-0 z-50">
             
             <!-- Barra Superior del Reproductor -->
-            <div class="p-4 flex items-center bg-[#181818] md:bg-transparent md:mb-4 sticky top-0 z-10 shadow-md md:shadow-none">
-                <button onclick="goBack()" class="flex items-center text-white hover:text-spotify-green transition-colors font-bold text-sm md:text-base bg-[#282828] md:bg-spotify-card px-4 py-2 rounded-full shadow-lg">
+            <div class="p-4 md:px-0 flex items-center bg-white md:bg-transparent border-b border-gray-100 md:border-none sticky top-0 z-10">
+                <button onclick="goBack()" class="flex items-center text-gray-600 hover:text-black transition-colors font-semibold text-sm md:text-base bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                    Volver a los libros
+                    Back to Books
                 </button>
-                <h2 class="ml-4 font-bold text-lg truncate md:text-2xl" id="player-title">Now Playing</h2>
+                <h2 class="ml-4 font-bold text-lg truncate text-gray-900" id="player-title">Now Playing</h2>
             </div>
 
             <!-- Contenedor del Reproductor SoundCloud -->
-            <div class="flex-1 w-full bg-black md:bg-spotify-card md:rounded-xl shadow-2xl overflow-hidden">
+            <!-- Al quitar bg-black y usar el alto completo, el widget blanco de SC encaja perfecto -->
+            <div class="flex-1 w-full bg-white md:rounded-2xl md:shadow-lg overflow-hidden border-t md:border border-gray-100">
                 <div id="soundcloud-container" class="w-full h-full">
                     <!-- El iframe se cargará dinámicamente aquí -->
                 </div>
@@ -144,36 +100,30 @@
 
     <script>
         function playBook(soundCloudUrl, title) {
-            // Cambiar las vistas
             document.getElementById('library-view').classList.add('hidden');
             document.getElementById('player-view').classList.remove('hidden');
             document.getElementById('player-title').innerText = title;
             
-            // Calculamos un alto generoso dinámico para celulares (85vh) o 650px fijos.
-            // Esto asegura que la carátula y la lista de canciones entren perfectas.
+            // LA MAGIA OCURRE AQUÍ: 
+            // visual=false genera el diseño blanco y en formato lista.
+            // color=%23000000 pinta los botones de play de color negro en lugar del naranja por defecto.
             document.getElementById('soundcloud-container').innerHTML = `
-                <iframe width="100%" height="100%" style="min-height: 75vh;" scrolling="no" frameborder="no" allow="autoplay" 
-                src="${soundCloudUrl}&color=%231ed760&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true"
-                class="w-full h-full">
+                <iframe width="100%" height="100%" style="min-height: 80vh;" scrolling="no" frameborder="no" allow="autoplay" 
+                src="${soundCloudUrl}&color=%23000000&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false">
                 </iframe>
             `;
             
-            // Subir al tope de la pantalla
             window.scrollTo(0, 0);
-            document.querySelector('main').scrollTo(0, 0);
         }
 
         function goBack() {
-            // Cambiar las vistas de regreso
             document.getElementById('player-view').classList.add('hidden');
             document.getElementById('library-view').classList.remove('hidden');
             
-            // Vaciar el contenedor apaga la música al volver
+            // Apaga la música al volver
             document.getElementById('soundcloud-container').innerHTML = '';
             
-            // Subir al tope de la pantalla
             window.scrollTo(0, 0);
-            document.querySelector('main').scrollTo(0, 0);
         }
     </script>
 </body>
