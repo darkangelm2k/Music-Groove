@@ -2,24 +2,32 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Live English, Talk English</title>
+    
+    <!-- ETIQUETAS PWA (APP NATIVA) -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f9fafb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Live English">
+    <link rel="apple-touch-icon" href="https://placehold.co/192x192/1e3a8a/ffffff?text=LE">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #f3f4f6; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        
+        /* Evita que los usuarios seleccionen el texto por accidente como en una web normal */
+        body { -webkit-user-select: none; user-select: none; }
     </style>
 </head>
-<!-- Quitamos el "overflow-hidden" y el "h-screen" para que el celular pueda hacer scroll hacia abajo sin atascarse -->
 <body class="bg-gray-50 text-gray-900 font-sans">
     
-    <!-- ========================================== -->
-    <!-- VISTA 1: LIBRERÍA (GRID BLANCO Y SCROLLABLE)-->
-    <!-- ========================================== -->
+    <!-- VISTA 1: LIBRERÍA -->
     <main id="library-view" class="p-4 md:p-8 md:max-w-6xl mx-auto transition-opacity duration-300 pb-12">
         <header class="mb-8 md:mb-12 pt-4 text-center md:text-left">
-            <!-- Títulos con los colores solicitados -->
             <h1 class="text-4xl md:text-5xl font-black tracking-tight">
                 <span class="text-blue-900">Live English,</span><br/>
                 <span class="text-red-800">Talk English</span>
@@ -28,7 +36,6 @@
         </header>
         
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
-            
             <!-- Tarjeta: BASIC -->
             <div onclick="playBook('https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/mmontero-608517442/sets/basic-beats')" 
                  class="group bg-white hover:shadow-xl hover:-translate-y-1 p-3 md:p-4 rounded-2xl shadow-sm border border-gray-100 transition-all duration-300 cursor-pointer relative">
@@ -71,21 +78,11 @@
         </div>
     </main>
 
-    <!-- ========================================== -->
-    <!-- VISTA 2: REPRODUCTOR (PANTALLA COMPLETA)   -->
-    <!-- ========================================== -->
-    <!-- Usamos fixed y 100dvh para que cubra exactamente la pantalla del celular sin importar la barra de direcciones -->
+    <!-- VISTA 2: REPRODUCTOR -->
     <div id="player-view" class="hidden fixed inset-0 z-50 bg-white flex flex-col h-[100dvh]">
-        
-        <!-- Contenedor del Reproductor SoundCloud -->
         <div class="flex-1 relative w-full bg-white">
-            <div id="soundcloud-container" class="absolute inset-0">
-                <!-- El iframe se cargará dinámicamente aquí -->
-            </div>
+            <div id="soundcloud-container" class="absolute inset-0"></div>
         </div>
-
-        <!-- Botón Volver (Fijado en la parte inferior de la pantalla) -->
-        <!-- pb-8 asegura que no quede pegado al borde inferior en iPhones o celulares con gestos -->
         <div class="p-4 bg-white border-t border-gray-200 flex justify-center pb-8 md:pb-4 shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
             <button onclick="goBack()" class="flex items-center justify-center text-white font-bold text-sm md:text-base bg-blue-900 hover:bg-blue-800 transition-colors px-6 py-3 rounded-full w-full max-w-sm shadow-md">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
@@ -95,33 +92,31 @@
     </div>
 
     <script>
+        // Registrar el Service Worker para habilitar la instalación como App
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').then(() => {
+                console.log('Service Worker Registrado');
+            });
+        }
+
         function playBook(soundCloudUrl) {
             document.getElementById('library-view').classList.add('hidden');
             document.getElementById('player-view').classList.remove('hidden');
-            
-            // Bloqueamos el scroll del fondo mientras el reproductor está abierto
             document.body.style.overflow = 'hidden';
             
-            // Inyectamos el reproductor
             document.getElementById('soundcloud-container').innerHTML = `
                 <iframe width="100%" height="100%" scrolling="yes" frameborder="no" allow="autoplay" 
                 src="${soundCloudUrl}&color=%23000000&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false">
                 </iframe>
             `;
-            
             window.scrollTo(0, 0);
         }
 
         function goBack() {
             document.getElementById('player-view').classList.add('hidden');
             document.getElementById('library-view').classList.remove('hidden');
-            
-            // Restauramos el scroll del fondo
             document.body.style.overflow = '';
-            
-            // Apaga la música al volver
             document.getElementById('soundcloud-container').innerHTML = '';
-            
             window.scrollTo(0, 0);
         }
     </script>
